@@ -141,6 +141,8 @@ maiken::CompilerProcessCapture maiken::cpp::GccCompiler::buildExecutable(
 #if defined(__APPLE__)
               loader << "-Wl,-rpath,"
                      << kul::Dir(lib_file.dir().real()).esc();
+              loader << "-Wl,-rpath,@loader_path/"
+                     << out.relative(lib_file);
 #else
               loader << "-Wl,-rpath="
                      << kul::Dir(lib_file.dir().real()).esc();
